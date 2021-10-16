@@ -24,4 +24,4 @@ clean:
 	rm -rf chatserver_* chatclient_* Submission.zip
 
 submit:
-	zip Submission.zip client_*/* server_*/*
+	zip Submission.zip makefile client_*/* server_*/*

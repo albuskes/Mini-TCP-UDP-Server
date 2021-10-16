@@ -88,18 +88,28 @@ int main(int argc, char *argv[]) {
         printf("Connect error");
         return -1;
     }
+    printf("Connection established\n");
     write(socket_desc, passcode, strlen(passcode));
+    printf("Send password \n");
 
-    char pass_response[2];
+    char pass_response[20];
     memset(pass_response, 0, 2);
-    read(socket_desc, pass_response, 100);
+    char intro_message[40];
+    memset(intro_message, 0, 40);
+    read(socket_desc, pass_response, 10);
 
     if(strcmp(pass_response, "y") == 0) {
         printf("Connected to %s on port %d \n", host, port);
+        //read(socket_desc, intro_message, 100);
     } else {
         close(socket_desc);
-        printf("Incorrect Passcode.");
+        printf("Incorrect passcode");
     }
+    printf("About to write user name... \n");
+    write(socket_desc, username, strlen(username));
+    printf("Username sent \n");
+
+    while(1){}
 
     return 0;
 }
